@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.github.jreddit.oauth.RedditToken;
 import com.github.jreddit.request.RedditGetRequest;
 import com.github.jreddit.request.RedditPostRequest;
+import com.github.jreddit.request.RedditPatchRequest;
 
 /**
  * Wrapper for any reddit client, which makes it <i>polite</i>.
@@ -67,7 +68,15 @@ public class RedditPoliteClient extends RedditClient {
         noteTime();
         return result;
     }
-    
+
+    @Override
+    public String patch(RedditToken rToken, RedditPatchRequest request) {
+        waitIfNeeded();
+        String result = redditClient.patch(rToken, request);
+        noteTime();
+        return result;
+    }
+
     /**
      * Note the current time.
      */

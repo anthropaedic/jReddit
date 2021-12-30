@@ -3,11 +3,13 @@ package com.github.jreddit.oauth.client;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import com.github.jreddit.request.RedditPatchRequest;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
@@ -88,7 +90,36 @@ public class RedditHttpClient extends RedditClient {
         return executeHttpRequest(request);
         
     }
-    
+
+    @Override
+    public String patch(RedditToken rToken, RedditPatchRequest redditRequest) {
+
+        try {
+
+            // Create post request
+            HttpPatch request = new HttpPatch(OAUTH_API_DOMAIN + redditRequest.generateRedditURI());
+
+            // Add parameters to body
+            request.setEntity(new StringEntity(redditRequest.generateBody()));
+
+            // Add authorization
+            addAuthorization(request, rToken);
+
+            // Add user agent
+            addUserAgent(request);
+
+            // Add content type
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+
+            return executeHttpRequest(request);
+
+        } catch (UnsupportedEncodingException uee) {
+            LOGGER.warn("Unsupported Encoding Exception thrown in PATCH request when encoding body", uee);
+        }
+
+        return null;
+    }
+
     /**
      * Execute the given HTTP request.
      * 

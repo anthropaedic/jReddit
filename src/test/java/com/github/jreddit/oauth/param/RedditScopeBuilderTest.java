@@ -5,7 +5,7 @@ import static junit.framework.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RedditScopeBuilderTest {
@@ -55,10 +55,11 @@ public class RedditScopeBuilderTest {
     @Test
     public void testAddMultiple() {
         builder.addScopes(RedditScope.EDIT, RedditScope.FLAIR);
+        String s = builder.build();
         assertTrue(
-                (RedditScope.EDIT.value() + RedditScope.SEPARATOR + RedditScope.FLAIR.value()).equals(builder.build()) 
+                (RedditScope.EDIT.value() + RedditScope.SEPARATOR + RedditScope.FLAIR.value()).equals(s)
                 ||
-                (RedditScope.FLAIR.value() + RedditScope.SEPARATOR + RedditScope.EDIT.value()).equals(builder.build()) 
+                (RedditScope.FLAIR.value() + RedditScope.SEPARATOR + RedditScope.EDIT.value()).equals(s)
                 );
         builder.removeScopes(RedditScope.EDIT, RedditScope.FLAIR);
     }

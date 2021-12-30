@@ -8,31 +8,32 @@ import com.github.jreddit.oauth.RedditOAuthAgent;
 import com.github.jreddit.oauth.RedditToken;
 import com.github.jreddit.oauth.app.RedditApp;
 import com.github.jreddit.oauth.app.RedditInstalledApp;
+import com.github.jreddit.oauth.exception.RedditOAuthException;
 
 public class ExampleImplicitGrantFlowToken {
 
-    public static void main(String[] args) throws OAuthSystemException, OAuthProblemException, ParseException {
-        
+    public static void main(String[] args) throws OAuthSystemException, OAuthProblemException, ParseException, RedditOAuthException {
+
         // Information about the app
         String userAgent = "jReddit: Reddit API Wrapper for Java";
         String clientID = "PfnhLt3VahLrbg";
         String redirectURI = "https://github.com/snkas/jReddit";
-        
+
         // Reddit application
         RedditApp redditApp = new RedditInstalledApp(clientID, redirectURI);
-        
+
         // Create OAuth agent
-        RedditOAuthAgent agent = new RedditOAuthAgent(userAgent, redditApp);    
-        
+        RedditOAuthAgent agent = new RedditOAuthAgent(userAgent, redditApp);
+
         // Input the code below:
         String accessToken = "40493658-0H3sRUOoxk19eJjVI4dhOJP_x_4";
         String tokenType = "bearer";
         long expiresIn = 3600;
         String scope = "flair";
-        
+
         // Ask for token
         RedditToken token = agent.tokenFromInfo(accessToken, tokenType, expiresIn, scope);
-        
+
         // Show some information about the token:
         System.out.println("Access Token: " + token.getAccessToken());
         System.out.println("Token Type: " + token.getTokenType());
@@ -42,6 +43,9 @@ public class ExampleImplicitGrantFlowToken {
         System.out.println("Will expire in 61 minutes: " + token.willExpireIn(61 * 60));
         System.out.println("Will expire in 59 minutes: " + token.willExpireIn(59 * 60));
 
+        // Revoke the token
+        System.out.println(agent.revoke(token, true)); // Should be true if success
+
     }
-    
+
 }
