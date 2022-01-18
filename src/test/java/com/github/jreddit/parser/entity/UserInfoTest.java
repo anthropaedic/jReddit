@@ -1,5 +1,5 @@
-package com.github.jreddit.parser.entity;
-
-public class UserInfoTest {
-
-}
+//package com.github.jreddit.parser.entity;
+//
+//public class UserInfoTest {
+//
+//}

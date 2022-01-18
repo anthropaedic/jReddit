@@ -1,0 +1,19 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          reddit:
+            clientId: M_MseGiVxdTQgjTcbj_NrQ
+            clientSecret: nKJObh5UL3CFvtxn6J2f88wRJH-iKw
+            clientAuthenticationMethod: client_secret_basic
+            authorizationGrantType: authorization_code
+            redirectUri: http://127.0.0.1/redirect
+            scope: identity
+            clientName: anthrobott
+        provider:
+          reddit:
+            authorizationUri: https://www.reddit.com/api/v1/authorize
+            tokenUri: https://www.reddit.com/api/v1/access_token
+            userInfoAuthenticationMethod: header
+            userNameAttribute: name

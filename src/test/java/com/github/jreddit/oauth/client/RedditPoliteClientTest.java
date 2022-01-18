@@ -1,5 +1,5 @@
-package com.github.jreddit.oauth.client;
-
-public class RedditPoliteClientTest {
-
-}
+//package com.github.jreddit.oauth.client;
+//
+//public class RedditPoliteClientTest {
+//
+//}
