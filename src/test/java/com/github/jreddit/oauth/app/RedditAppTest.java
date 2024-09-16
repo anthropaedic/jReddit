@@ -1,5 +1,5 @@
-package com.github.jreddit.oauth.app;
-
-public class RedditAppTest {
-
-}
+//package com.github.jreddit.oauth.app;
+//
+//public class RedditAppTest {
+//
+//}

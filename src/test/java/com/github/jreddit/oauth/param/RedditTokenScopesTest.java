@@ -1,5 +1,5 @@
-package com.github.jreddit.oauth.param;
-
-public class RedditTokenScopesTest {
-
-}
+//package com.github.jreddit.oauth.param;
+//
+//public class RedditTokenScopesTest {
+//
+//}
